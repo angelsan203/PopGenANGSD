@@ -1,22 +1,50 @@
-#### Se indexa el genoma de referencia ####
 
-bwa index GenomRef.fasta
+#### Setup y preparación de los datos #### 
 
-#### Burrows Willer Alignment ####
+### Bienvenida y Creación de un directorio para todo el análisis ### 
 
-bwa mem GenomRef.fasta Genom1.1.fasta Genom1.2.fasta -o Genom.1.sam
+echo "Nuevo análisis con ANGSD"
+echo "Escribe el nombre del Nuevo Análisis sin espacios ni caracteres especiales" 
+read Analis_Name
+echo "Escribe el path de la carpeta donde se encuentra tu genoma de referencia" 
+read path2GenRef 
+Echo "Ahora escribe el nombre de la carpeta donde se encuentra tu genoma de referencia"
+read GenRefDir
 
-#### Transformar .sam a .bam ####
+cd path2GenRef
+mkdir Analisis_Name 
+
+for i in GenRefDir/*.fasta
+ do echo $filename
+done 
+
+echo "Escribe el nombre del archivo del genoma de referencia como se encuentra en la lista anterior" 
+read GenomRef
+
+### Se indexa el genoma de referencia ###
+
+bwa index GenomRef
+
+### Burrows Willer Alignment ###
+echo "Escribe el path del directorio donde se encuentran los fasta q de los genomas a analizar" 
+read pathfastq
+
+
+
+
+bwa mem GenomRef Genom1.1.fasta Genom1.2.fasta -o Genom.1.sam
+
+### Transformar .sam a .bam ###
 
 samtools view Genom.1.sam -o Genom.1.bam 
 
-#### Sortear los documentos .bam ####
+### Sortear los documentos .bam ###
 
 samtools sort Genom.1.bam -o Genom.1_sorted.bam
 
-#### Indexar los documentos .bam y crear listas de .bam ####
+### Indexar los documentos .bam y crear listas de .bam ###
 
-### Crear un directorio para los bams ###
+## Crear un directorio para los bams ##
 
 mkdir bams_sorted
 
