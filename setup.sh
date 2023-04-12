@@ -5,16 +5,16 @@
 
 echo "Nuevo análisis con ANGSD"
 echo "Escribe el nombre del Nuevo Análisis sin espacios ni caracteres especiales" 
-read Analis_Name
+read analysis_name
 echo "Escribe el path de la carpeta donde se encuentra tu genoma de referencia" 
 read path2GenRef 
 Echo "Ahora escribe el nombre de la carpeta donde se encuentra tu genoma de referencia"
 read GenRefDir
 
-cd path2GenRef
-mkdir Analisis_Name 
+cd $path2GenRef
+mkdir $analysis_name 
 
-for i in GenRefDir/*.fasta
+for i in $GenRefDir/*.fasta
  do echo $filename
 done 
 
